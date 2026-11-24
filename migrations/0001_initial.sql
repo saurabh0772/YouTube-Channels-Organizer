@@ -49,11 +49,3 @@ CREATE TABLE IF NOT EXISTS rate_limits (
   locked_until TEXT
 );
 
--- Seed initial 4 channels if channels table is empty
-INSERT OR IGNORE INTO channels (id, name, next_video_number, created_at, updated_at)
-VALUES 
-  ('ch_toon_rivora', 'Toon Rivora', 1, datetime('now'), datetime('now')),
-  ('ch_techno_slayer', 'Techno Slayer', 1, datetime('now'), datetime('now')),
-  ('ch_rule_breaker', 'Rule Breaker', 1, datetime('now'), datetime('now')),
-  ('ch_ssc_vertex', 'SSC Vertex', 1, datetime('now'), datetime('now'));
-

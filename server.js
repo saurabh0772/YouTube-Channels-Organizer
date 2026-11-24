@@ -40,12 +40,7 @@ console.log(
 );
 
 // Memory fallback store if CF credentials not supplied
-let memChannels = [
-  { id: 'ch_toon_rivora', name: 'Toon Rivora', next_video_number: 1, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
-  { id: 'ch_techno_slayer', name: 'Techno Slayer', next_video_number: 1, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
-  { id: 'ch_rule_breaker', name: 'Rule Breaker', next_video_number: 1, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
-  { id: 'ch_ssc_vertex', name: 'SSC Vertex', next_video_number: 1, created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
-];
+let memChannels = [];
 let memVideos = [];
 let memSessions = new Map();
 let memRateLimits = new Map();
@@ -112,11 +107,6 @@ async function initRemoteD1() {
         last_attempt_at TEXT NOT NULL,
         locked_until TEXT
       );
-      INSERT OR IGNORE INTO channels (id, name, next_video_number, created_at, updated_at) VALUES 
-        ('ch_toon_rivora', 'Toon Rivora', 1, datetime('now'), datetime('now')),
-        ('ch_techno_slayer', 'Techno Slayer', 1, datetime('now'), datetime('now')),
-        ('ch_rule_breaker', 'Rule Breaker', 1, datetime('now'), datetime('now')),
-        ('ch_ssc_vertex', 'SSC Vertex', 1, datetime('now'), datetime('now'));
     `;
     await queryD1(initSql);
     console.log('[Database] Remote Cloudflare D1 tables initialized successfully');

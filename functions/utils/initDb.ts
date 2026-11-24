@@ -51,26 +51,6 @@ export async function ensureDatabaseSchema(env: Env): Promise<void> {
       env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_videos_created_at ON videos (created_at DESC)'),
       env.DB.prepare('CREATE INDEX IF NOT EXISTS idx_videos_channel_created ON videos (channel_id, created_at DESC)'),
     ]);
-
-    // Check if channels are empty; if so, insert the default 4 channels
-    const countRes = await env.DB.prepare('SELECT COUNT(*) as count FROM channels').first<{ count: number }>();
-    if (!countRes || countRes.count === 0) {
-      const now = new Date().toISOString();
-      await env.DB.batch([
-        env.DB.prepare(
-          'INSERT OR IGNORE INTO channels (id, name, next_video_number, created_at, updated_at) VALUES (?, ?, 1, ?, ?)'
-        ).bind('ch_toon_rivora', 'Toon Rivora', now, now),
-        env.DB.prepare(
-          'INSERT OR IGNORE INTO channels (id, name, next_video_number, created_at, updated_at) VALUES (?, ?, 1, ?, ?)'
-        ).bind('ch_techno_slayer', 'Techno Slayer', now, now),
-        env.DB.prepare(
-          'INSERT OR IGNORE INTO channels (id, name, next_video_number, created_at, updated_at) VALUES (?, ?, 1, ?, ?)'
-        ).bind('ch_rule_breaker', 'Rule Breaker', now, now),
-        env.DB.prepare(
-          'INSERT OR IGNORE INTO channels (id, name, next_video_number, created_at, updated_at) VALUES (?, ?, 1, ?, ?)'
-        ).bind('ch_ssc_vertex', 'SSC Vertex', now, now),
-      ]);
-    }
   } catch (err) {
     console.error('Error during ensureDatabaseSchema:', err);
   }
