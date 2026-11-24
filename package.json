@@ -7,6 +7,7 @@
     "dev": "vite",
     "start": "node server.js",
     "build": "tsc && vite build",
+    "deploy": "wrangler pages deploy dist",
     "typecheck": "tsc -p tsconfig.json && tsc -p functions/tsconfig.json",
     "preview": "vite preview",
     "pages:dev": "wrangler pages dev --compatibility-date=2024-04-01 --d1=DB=youtube-hq-db -- npm run dev",
