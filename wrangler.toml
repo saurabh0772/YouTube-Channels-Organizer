@@ -1,4 +1,4 @@
-name = "youtube-content-hq"
+name = "youtube-channels-organizer"
 pages_build_output_dir = "./dist"
 compatibility_date = "2024-04-01"
 
