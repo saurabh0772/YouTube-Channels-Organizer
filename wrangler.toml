@@ -2,14 +2,5 @@ name = "youtube-channels-organizer"
 pages_build_output_dir = "./dist"
 compatibility_date = "2024-04-01"
 
-# Cloudflare D1 Database binding
-[[d1_databases]]
-binding = "DB"
-database_name = "youtube-hq-db"
-database_id = "local-d1-placeholder" # Replaced when creating production D1 DB
-
-[vars]
-# Default fallback for local testing if not set via environment secret.
-# In production, set with: wrangler secret put AUTH_PASSCODE
-# In production, set with: wrangler secret put SESSION_SECRET
-
+# D1 Database binding "DB" is connected in Cloudflare Dashboard:
+# Settings -> Functions -> D1 database bindings -> Add binding (Variable name: DB, D1 database: youtube-hq-db)
